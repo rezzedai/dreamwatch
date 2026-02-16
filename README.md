@@ -141,9 +141,9 @@ You could. But you'd get:
 
 dreamwatch adds the safety rails that make overnight execution production-ready.
 
-## Want More?
+## What's Next?
 
-dreamwatch runs one agent overnight. [Rezzed Grid-as-a-Service](https://rezzed.ai) runs a team of specialized agents with persistent memory, coordinated task routing, mobile monitoring, and security audits.
+More tools coming from the @rezzedai toolkit. See [rezzed.ai](https://rezzed.ai) for updates.
 
 ## License
 
