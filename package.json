@@ -1,0 +1,31 @@
+{
+  "name": "@rezzedai/dreamwatch",
+  "version": "0.1.0",
+  "description": "Overnight autonomous execution for Claude Code with safety rails",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "dreamwatch": "bin/dreamwatch.js"
+  },
+  "files": ["dist", "bin"],
+  "scripts": {
+    "build": "tsc",
+    "pretest": "npm run build",
+    "test": "node --test test/*.test.js",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rezzedai/dreamwatch.git"
+  },
+  "keywords": ["claude-code", "autonomous", "overnight", "dream-mode", "budget", "safety"],
+  "author": "rezzedai",
+  "license": "MIT",
+  "bugs": { "url": "https://github.com/rezzedai/dreamwatch/issues" },
+  "homepage": "https://github.com/rezzedai/dreamwatch#readme",
+  "engines": { "node": ">=18.0.0" },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "typescript": "^5.7.3"
+  }
+}
