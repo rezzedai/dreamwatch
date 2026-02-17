@@ -1,9 +1,9 @@
-# @rezzedai/dreamwatch
+# @rezzed.ai/dreamwatch
 
 **Overnight autonomous execution for Claude Code.** Queue a task before bed, wake up to a PR and a report.
 
 ```bash
-npx @rezzedai/dreamwatch "refactor auth module to use JWT" --budget 5
+npx @rezzed.ai/dreamwatch "refactor auth module to use JWT" --budget 5
 ```
 
 ---
@@ -21,9 +21,9 @@ dreamwatch runs a Claude Code task overnight with hard safety rails:
 ## Install
 
 ```bash
-npm install -g @rezzedai/dreamwatch
+npm install -g @rezzed.ai/dreamwatch
 # or use directly
-npx @rezzedai/dreamwatch "your task here"
+npx @rezzed.ai/dreamwatch "your task here"
 ```
 
 **Requirements:** Node.js 18+, `ANTHROPIC_API_KEY` environment variable set.
@@ -143,7 +143,7 @@ dreamwatch adds the safety rails that make overnight execution production-ready.
 
 ## What's Next?
 
-More tools coming from the @rezzedai toolkit. See [rezzed.ai](https://rezzed.ai) for updates.
+More tools coming from the @rezzed.ai toolkit. See [rezzed.ai](https://rezzed.ai) for updates.
 
 ## License
 
