@@ -1,5 +1,5 @@
 {
-  "name": "@rezzedai/dreamwatch",
+  "name": "@rezzed.ai/dreamwatch",
   "version": "0.1.0",
   "description": "Overnight autonomous execution for Claude Code with safety rails",
   "main": "dist/index.js",
