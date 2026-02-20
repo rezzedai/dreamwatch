@@ -1,6 +1,6 @@
 # @rezzed.ai/dreamwatch
 
-**Overnight autonomous execution for Claude Code.** Queue a task before bed, wake up to a PR and a report.
+**Budget-capped overnight execution with git isolation and timeout enforcement for Claude Code.** Queue a task before bed, wake up to a PR and a report.
 
 ```bash
 npx @rezzed.ai/dreamwatch "refactor auth module to use JWT" --budget 5
@@ -103,6 +103,14 @@ https://github.com/user/repo/pull/42
 }
 ```
 
+## Design Constraints
+
+- Budget ceiling is a hard kill, not a soft warning
+- Git isolation is mandatory — main/master push is physically blocked
+- Wall-clock timeout triggers graceful shutdown, not abrupt termination
+- Morning report is generated regardless of completion state
+- Process orphaning is actively prevented via PID tracking
+
 ## Safety Rails
 
 | Protection | How It Works |
@@ -151,4 +159,4 @@ MIT
 
 ---
 
-Built by [Rezzed](https://rezzed.ai) — the AI product studio.
+**Built by:** [RezzedAI](https://rezzed.ai) — Infrastructure for bounded multi-agent systems.
