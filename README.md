@@ -16,7 +16,7 @@ dreamwatch runs a Claude Code task overnight with hard safety rails:
 - **Git isolation** — All work goes to a dedicated branch. Never touches main.
 - **Wall-clock timeout** — Default 4 hours. No runaway sessions.
 - **Morning report** — Structured Markdown report of what was done, decided, and needs review.
-- **Auto-PR** — Opens a draft PR on completion.
+- **Auto-PR** — On successful completion, dreamwatch automatically commits all changes and opens a draft PR to main. No manual trigger required (disable with `--no-pr`).
 
 ## Install
 
@@ -27,6 +27,17 @@ npx @rezzed.ai/dreamwatch "your task here"
 ```
 
 **Requirements:** Node.js 18+, `ANTHROPIC_API_KEY` environment variable set.
+
+## Where to Run
+
+dreamwatch runs **on your local machine** (not a server), polling CacheBash MCP for dream tasks assigned to your programs.
+
+**How it works:**
+- Runs as a local process on the machine where you execute the command
+- Watches for dream tasks via CacheBash MCP (configured in `.mcp.json` or `~/.claude.json`)
+- Executes Claude Code sessions within sandbox constraints
+- **Requires machine to stay awake** — disable sleep mode or use caffeinate/similar tools
+- **For 24/7 reliability:** Consider running on a cloud server or VPS with CacheBash MCP configured
 
 ## Quick Start
 
@@ -64,7 +75,9 @@ You run dreamwatch with a task description
 
 ## Morning Report
 
-Every run produces a structured report at `~/.dreamwatch/reports/`:
+Every run produces a structured report saved to:
+- **Local archive:** `~/.dreamwatch/reports/{date}.md`
+- **Git branch:** Written to the dream session's working branch (e.g., `dreamwatch/2026-02-15/refactor-auth/REPORT.md`)
 
 ```markdown
 # dreamwatch Report — 2026-02-15
@@ -115,8 +128,8 @@ https://github.com/user/repo/pull/42
 
 | Protection | How It Works |
 |-----------|-------------|
-| Budget cap | Tracks token usage from API responses. Stops when exceeded. |
-| Wall-clock timeout | Process-level timeout. Default 4 hours. |
+| Budget cap | Tracks token usage from Anthropic API response headers (`usage.input_tokens`, `usage.output_tokens`), calculates cost using current Claude pricing, and terminates the session when the specified budget is reached. |
+| Wall-clock timeout | Process-level timeout. Default 4 hours. Hard limit on execution time. |
 | Git isolation | Dedicated branch + pre-push hook rejecting main/master. |
 | Graceful shutdown | On any hard stop: commit work, write report, exit clean. |
 
