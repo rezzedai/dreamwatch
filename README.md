@@ -16,7 +16,7 @@ dreamwatch runs a Claude Code task overnight with hard safety rails:
 - **Git isolation** — All work goes to a dedicated branch. Never touches main.
 - **Wall-clock timeout** — Default 4 hours. No runaway sessions.
 - **Morning report** — Structured Markdown report of what was done, decided, and needs review.
-- **Auto-PR** — Opens a draft PR on completion.
+- **Auto-PR** — Automatically opens a draft PR on completion (enabled by default, disable with `--no-pr`).
 
 ## Install
 
@@ -27,6 +27,14 @@ npx @rezzed.ai/dreamwatch "your task here"
 ```
 
 **Requirements:** Node.js 18+, `ANTHROPIC_API_KEY` environment variable set.
+
+## Where to Run
+
+dreamwatch runs **on your local machine** while Claude Code executes tasks overnight. Important considerations:
+
+- **Local execution**: The script runs on the machine where you execute the command
+- **Keep machine awake**: Your computer must stay powered on and awake throughout execution (disable sleep mode)
+- **Alternative deployment**: For reliability, consider running on a cloud server or VPS that stays online 24/7
 
 ## Quick Start
 
@@ -64,7 +72,7 @@ You run dreamwatch with a task description
 
 ## Morning Report
 
-Every run produces a structured report at `~/.dreamwatch/reports/`:
+Every run produces a structured report saved to `~/.dreamwatch/reports/{date}.md`:
 
 ```markdown
 # dreamwatch Report — 2026-02-15
@@ -115,8 +123,8 @@ https://github.com/user/repo/pull/42
 
 | Protection | How It Works |
 |-----------|-------------|
-| Budget cap | Tracks token usage from API responses. Stops when exceeded. |
-| Wall-clock timeout | Process-level timeout. Default 4 hours. |
+| Budget cap | **Note:** Budget tracking is currently a placeholder feature. The tool enforces wall-clock timeout but does not yet calculate actual API costs. Budget field in reports will show $0.00 until cost tracking is implemented. |
+| Wall-clock timeout | Process-level timeout. Default 4 hours. Hard limit on execution time. |
 | Git isolation | Dedicated branch + pre-push hook rejecting main/master. |
 | Graceful shutdown | On any hard stop: commit work, write report, exit clean. |
 
